@@ -33,7 +33,7 @@ class PokerDice {
     public function throw (){ 
         $this->shapeName( array_rand($this->carasDau , 1) );
         echo "<br>". $this->lanzar;     
-        static::$counter += 1;
+        PokerDice::$counter += 1;
         
     }
     
@@ -46,10 +46,11 @@ class PokerDice {
             $poker[$i] = new PokerDice;
             $poker[$i]->throw();
         }
+      $this->getTotal();
     }
     
     public function getTotal(){
-        echo "Has tirado los dados ". static::$counter." veces </br>";
+        echo "Has tirado los dados ". self::$counter." veces </br>";
     }
 }
 
@@ -57,7 +58,6 @@ class PokerDice {
 echo "Te toca lanzar los dados <br>";
 $jugar = new PokerDice;
 $jugar -> object();
-$jugar -> getTotal();
 
 ?>
 </body>
