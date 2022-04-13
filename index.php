@@ -27,12 +27,10 @@ Realitza una aplicació que permeti tirar cinc daus de pòquer alhora. </br></br
 class PokerDice {
     private $carasDau = array("As", "K", "Q", "J", 7 ,8);
     private static $counter = 0;
-    private $lanzar;
-
-    
+      
     public function throw (){ 
         $this->shapeName( array_rand($this->carasDau , 1) );
-        echo "<br>". $this->lanzar;     
+        echo "<br>";    
         PokerDice::$counter += 1;
         
     }
