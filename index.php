@@ -24,38 +24,40 @@ echo " Crea la classe PokerDice. Les cares d'un dau de pòquer tenen les següen
 Crea el mètode throw que no fa altra cosa que tirar el dau, és a dir, genera un valor aleatori per a l'objecte a què se li aplica el mètode. Crea també el mètode shapeName, que digui quina és la figura que ha sortit en l'última tirada de el dau en qüestió. Crea finalment el mètode getTotalThrows que ha de mostrar el nombre total de tirades entre tots els daus.
 Realitza una aplicació que permeti tirar cinc daus de pòquer alhora. </br></br></br>";
 
+
 class PokerDice {
-    private $carasDau = array("As", "K", "Q", "J", 7 ,8);
+    private static $carasDau = array("As", "K", "Q", "J", 7 ,8);
     private static $counter = 0;
-      
-    public function throw (){ 
-        $this->shapeName( array_rand($this->carasDau , 1) );
-        echo "<br>";    
+    
+    private function throw (){ 
+        $lanzar = array_rand(static::$carasDau , 1) ;
         PokerDice::$counter += 1;
-        
-    }
-    
-    public function shapeName($aleatorio){
-        echo $this->carasDau[$aleatorio];   
-    }
-    
-    public function object(){
-        for ($i = 0; $i < 5; $i++){
-            $poker[$i] = new PokerDice;
-            $poker[$i]->throw();
-        }
-      $this->getTotal();
+        return static::$carasDau[$lanzar];    
+      }
+      
+      public function shapeName(){
+        echo $this->throw() . "</br>";   
     }
     
     public function getTotal(){
         echo "Has tirado los dados ". self::$counter." veces </br>";
     }
+
 }
 
 
 echo "Te toca lanzar los dados <br>";
-$jugar = new PokerDice;
-$jugar -> object();
+function instanciar(){
+  for ($i = 0; $i < 5; $i++){
+    $poker[$i] = new PokerDice;
+    $poker[$i]-> shapeName();
+
+    if($i == 4){
+      $poker[$i]-> getTotal();
+    }
+  }
+}
+instanciar();
 
 ?>
 </body>
