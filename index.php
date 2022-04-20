@@ -28,15 +28,16 @@ Realitza una aplicació que permeti tirar cinc daus de pòquer alhora. </br></br
 class PokerDice {
     private static $carasDau = array("As", "K", "Q", "J", 7 ,8);
     private static $counter = 0;
+    private $lanzar;
     
-    private function throw (){ 
-        $lanzar = array_rand(static::$carasDau , 1) ;
+    public function throw(){ 
+        $this->lanzar = array_rand(static::$carasDau , 1) ;
         PokerDice::$counter += 1;
-        return static::$carasDau[$lanzar];    
+        return $this->lanzar;    
       }
       
       public function shapeName(){
-        echo $this->throw() . "</br>";   
+        echo static::$carasDau[$this->lanzar] . "</br>"; 
     }
     
     public function getTotal(){
@@ -50,15 +51,16 @@ echo "Te toca lanzar los dados <br>";
 function instanciar(){
   for ($i = 0; $i < 5; $i++){
     $poker[$i] = new PokerDice;
+    $poker[$i]-> throw();
     $poker[$i]-> shapeName();
 
-    if($i == 4){
-      $poker[$i]-> getTotal();
-    }
+  }
+  if($poker[4]){
+    $poker[4]-> getTotal();
   }
 }
 instanciar();
-
+  
 ?>
 </body>
 </html>
